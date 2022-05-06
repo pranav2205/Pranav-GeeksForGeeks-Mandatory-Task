@@ -1,0 +1,492 @@
+while True:
+    print("Welcome to The Arcade!\nPlease choose the from below, the game you wish to play\n 1.Hangman \n 2.Crossword \n 3.Quiz \n 4.Exit")
+    choi=int(input("Enter choice:"))
+    if (choi==1):
+        import random
+        hang = []
+        hang.append(' +---+')
+        hang.append(' |   |')
+        hang.append('     |')
+        hang.append('     |')
+        hang.append('     |')
+        hang.append('     |')
+        hang.append('=======')
+        man = {}
+        man[0] = [' 0   |']
+        man[1] = [' 0   |', ' |   |']
+        man[2] = [' 0   |', '/|   |']
+        man[3] = [' 0   |', '/|\\  |']
+        man[4] = [' 0   |', '/|\\  |', '/    |']
+        man[5] = [' 0   |', '/|\\  |', '/ \\  |']
+        pics=[]
+        i, j = 2, 0
+        pics.append(hang[:])
+        for ls in man.values():
+            pic, j = hang[:], 0
+            for m in ls:
+                pic[i + j] = m
+                j += 1
+                pics.append(pic)
+        while True:
+            print('''\nWelcome to Hangman!
+Please choose a topic of your choice from below:
+1)Animals
+2)Food
+3)Brands
+4)Sports\n''')
+            c=int(input())
+            if c==1:
+                words='''ant baboon badger bat bear beaver camel cat clam cobra cougar coyote
+crow deer dog donkey duck eagle ferret fox frog goat goose hawk lion lizard llama
+mole monkey moose mouse mule newt otter owl panda parrot pigeon python rabbit ram
+rat raven rhino salmon seal shark sheep skunk sloth snake spider stork swan tiger
+toad trout turkey turtle weasel whale wolf wombat zebra'''.split()
+            elif c==2:
+                words='''applepie barley bruscetta bacon bagel buritto cantaloupe cheese chocolate
+cookies celery dates donuts dumpling eggs falafel fish guacamole gnocchi garlic grapes hashbrowns
+hummus hotogs icecream jelly kebab ketchup lobster lasagna meatballs milk noodles quesadilla
+spinach spaghetti toast venison waffles walnuts yogurt zucchini'''.split()
+            elif c==3:
+                words='''adidas aldo boss barbie bmw babyshark calvinklein cloudnine clarks cocacola
+crocs casio chanelle dior diesel disney discovery duracell esprit eno fila fasttrack fisherprice
+fossil gucci giorgioarmani hugoboss hotwheels jigsaw kappa kuhl lego levis marvel magnum nationalgeographic
+nike oasis oreo ola pixar playdoh philips reeses rayban ralphlauren speedo skoda torq tommyhilfiger
+underarmour uber volkswagen vans'''.split()
+            elif c==4:
+                words='''athletics archery basketball badminton boxing cheerleading cricket cycling
+diving dodgeball football fencing gokarting handball hockey judo karate kickboxing kungfu lacrosse
+running rugby rockclimbing swimming surfing squash snooker sailing tennis tabletennis volleyball
+waterpolo'''.split()
+            else:
+                print('\nPlease enter a valid choice from the options given above')
+            st=words[random.randint(0, len(words) - 1)]
+            print('The word to guess is:\n')
+            s1='*'*(len(st))
+            print(s1)
+            p=-1
+            s2=''
+            s3=''
+            while True:
+                guess=input('\nEnter your guess: ')
+                if guess in s2:
+                    print('You have already guessed this word')
+                    s2+=guess
+                elif guess in st:
+                    for i in range(len(st)):
+                        if st[i]==guess:
+                            s1=s1[:i]+guess+s1[i+1:]
+                    print(s1)
+                    print('\nYou guessed right!')
+                else:
+                    if guess in s3:
+                        print('You have already guessed this word')
+                    else:
+                        p+=2
+                        print(s1)
+                        for line in pics[p]:
+                            print(line)
+                        if p==11:
+                            print('You just killed a man yo, you lose! :(')
+                            print('\nThe word is:',st)
+                            break
+                        else:
+                            print('Wrong guess, the mans about to die, save him! :O')
+                    s3+=guess
+                if s1==st:
+                    print('Congratulations! You just saved a life :)')
+                    break
+            print('\nDo you want to play again?(enter Y for yes or N for no)')
+            cho=input()
+            if cho=='Y' or cho=='y':
+                continue
+            elif cho=='N' or cho=='n':
+                print('\nSee you later alligator!')
+                break
+    elif(choi==2):
+        while True:
+            print("   CROSSWORDS \n 1.Movies  \n 2.All things Indian \n 3.Exit \n")
+            ch=int(input("Which crossword would u like to solve? "))
+            if(ch==1):
+                print("         (1)               (2)")
+                print("         |__|__ __ __ __ __|__|  (4)")
+                print("      (3)|__|__|__|__|__|__|__|  |__|")
+                print("   (11)__|__|(6)__(7) __ __|__|__|__|")
+                print("(5)|__|__|__|__|__|__|__|__|__|__|__|")
+                print("   |__|  |__|__|__|__|     |__|  |__|")
+                print("   |__|(8|__|__|__|__|     |__|__|__|__ __  ")
+                print("   |__|  |__|__|  |__|    (10)|__|__|__|__|")
+                print("   |__|     |__|  |__|           |__|")
+                print("          __|__|__|__|__ __")
+                print("      (9)|__|__|__|__|__|__|")
+                print("            |__|  |__|")
+                print("            |__|")
+                print("CLUES: \n1)1997 film success,ship disaster(down) \n2)movie starring Christian bale,last word in the title(down) \n3)J.A.R.V.I.S(down) \n4)Matt Damon(down) \n5)\"Why so serious\"(across) \n6)blue glowing cube of marvel(down) \n7)hakuna matata(down) \n8)mission mangal was based on events taking place in____(across) \n9)human form of hulk(across) \n10)1975 shark thriller(across) \n11)Forrest gump(down)")
+                l=["TITANIC","KNIGHT","IRONMAN","MARTIAN","HEATHLEDGER","TESSERACT","LIONKING","ISRO","BANNER","JAWS","HANKS"]
+                print("\nPlease enter the answers in order,all caps and with no spaces \n")
+                sum=0
+                for i in range(0,11):
+                    c=int(input("Select the clue number that you want to answer"))
+                    ans=input("Enter answer")
+                    for j in range(0,2):
+                        if(l[c-1]==ans):
+                            sum=sum+10
+                            print("Right answer!")
+                            break
+                        print("Wrong answer")
+                        if(j==0):
+                            ans=input("Enter answer(2nd try)")
+                n=sum/10
+                print("You got ",int(n),"words correct! You're total score is",sum)
+            elif(ch==2):
+                print("               (1)")
+                print("               |__|")
+                print("               |__|     (6)")
+                print("          __ __|__|__ __|__|__ __")
+                print("      (2)|__|__|__|__|__|__|__|__|")
+                print("    __ __ __ __|__|     |__|     (7)     ")
+                print("(3)|__|__|__|__|__|__ __|__|__ __|__|")
+                print("          __(4)|__|__|__|__|__|__|__|")
+                print("      (5)|__|__|__|   __|__|__ __|__|__ __")
+                print("               |__(8)|__|__|__|__|__|__|__|")
+                print("             __ __ __ __|__|   __|__|__ __ __")
+                print("        (10)|__|__|__|__|__(9)|__|__|__|__|__|")
+                print("CLUES: \n1)literal meaning-four towers(down) \n2)Indian dish-highly seasoned rice(across) \n3)Brightly coloured cloth worn as an ankle length garment(across) \n4)Indian greeting(across) \n5)Most famous beach destination in India(across) \n6)Ex-Garden City(down) \n7)Vegetarian's chicken(upward) \n8)Keralites are stereotyped to use this in all their food(across) \n9)food item originating from kerala, best eaten with stew(across) \n10)6 ft long garment(across) ")
+                k=["CHARMINAR","BIRIYANI","LUNGI","NAMASTE","GOA","BANGALORE","PANEER","COCONUT","APPAM","SAREE"]
+                print("\nPlease enter the answers in order,all caps and with no spaces \n")
+                sum2=0
+                for i in range(0,10):
+                    c=int(input("Select the clue number that you want to answer"))
+                    ans=input("Enter answer")
+                    for j in range(0,2):
+                        if(k[c-1]==ans):
+                            sum2=sum2+10
+                            print("Right answer!")
+                            break
+                        print("Wrong answer")
+                        if(j==0):
+                            ans=input("Enter answer(2nd try)")
+                n=sum2/10
+                print("You got ",int(n),"words correct! You're total score is",sum2)
+
+            elif(ch==3):
+                print("Crossword ended")
+                break
+    elif(choi==3):
+        print("\nWelcome to Quiz, please choose one of the following topics:")
+        print("1.entertainment")
+        print("2.current affairs")
+        print("3.places around the world")
+        print("4.sports")
+        print("5.Exit")
+        while(True):
+            choice = int(input("\nenter your choice from the Menu : "))
+            marks = 0
+            if(choice ==1):
+                print("you have picked entertainment!")
+                print("/nyou will be asked 5 questions and be given four options each so lets go!!")
+                print("\nQ1.Who is known as the 'father of Indian Cinema")
+                print("\nyour options are:")
+                print("1.Satyajit Ray")
+                print("2.Dadasaheb Phalke")
+                print("3.Dadasaheb Torne")
+                print("4.V. Shantaram")
+                a=int(input("enter your option"))
+                correct_opt = 2
+                if a==correct_opt:
+                    marks = marks + 50
+                    print("\nyour points are: ",marks)
+                else:
+                    print("incorrrect option")
+                print("\nQ2.What villain did Dane DeHaan play in the 2014 film The Amazing Spider-Man 2?")
+                print("\nyour options are:")
+                print("1.Electro")
+                print("2.Green Goblin")
+                print("3.Venom")
+                print("4.Rhino")
+                b=int(input("enter your option"))
+                correct_opt = 2
+                if b==correct_opt:
+                    marks = marks + 50
+                    print("\nyour points are: ",marks)
+                else:
+                    print("incorrrect option")
+                print("\nQ3.What nationality is Shawn Mendes?")
+                print("\nyour options are:")
+                print("1.Costa Rican")
+                print("2.Spanish")
+                print("3.Swiss")
+                print("4.Canadian")
+                c=int(input("enter your option"))
+                correct_opt = 4
+                if c==correct_opt:
+                    marks = marks + 50
+                    print("your points are: ",marks)
+                else:
+                    print("incorrect option")
+                print("\nQ4.Who became Skullcrusher's new rider following Stoick's death in the 2014 film How To Train Your Dragon 2?")
+                print("\nyour options are:")
+                print("1.Tuffnut")
+                print("2.Drago")
+                print("3.Eret")
+                print("4.Valka")
+                d=int(input("enter your option"))
+                correct_opt= 3
+                if d==correct_opt:
+                    marks = marks + 50
+                    print("your points are : ",marks)
+                else:
+                    print("incorrect option")
+                print("\nQ5.Which One Direction song includes the lyrics Baby you light up my world like nobody else?")
+                print("\nyour options are:")
+                print("1.Thats what makes you beautiful")
+                print("2.Night changes")
+                print("3.History")
+                print("4.Steal my girl")
+                e=int(input("enter your option"))
+                correct_opt= 1
+                if e==correct_opt:
+                    marks = marks + 50
+                    print("your points are : ",marks)
+                else:
+                    print("incorrect option")
+                print("\nDo you want to do another one??: (yes/no)")
+                t = input()
+                if (t=='yes'):
+                    continue
+                else:
+                    print("okay , see you next time!")
+                    break
+       
+            elif(choice == 2):
+                print("you have picked Current Affairs!")
+                print("\nyou will be asked 5 questions and be given four options each so lets go!!")
+                print("\nQ1.Which space agency has developed an UltraViolet telescope to study short flashes in Earth’s atmosphere?")
+                print("\nyour options are:")
+                print("1.NASA")
+                print("2.Russian Space Agency")
+                print("3.ISRO")
+                print("4.JAXA")
+                a=int(input("enter your option"))
+                correct_opt = 2
+                if a==correct_opt:
+                    marks = marks + 50
+                    print("your points are: ",marks)
+                else:
+                    print("incorrrect option")
+                print("\nQ2.With which of the following organizations does Government partner for the ‘Crafted in India’ project??")
+                print("\nyour options are:")
+                print("1.Google")
+                print("2.Facebook")
+                print("3.Amazon")
+                print("4.Walmart")
+                b=int(input("enter your option"))
+                correct_opt = 1
+                if b==correct_opt:
+                    marks = marks + 50
+                    print("your points are: ",marks)
+                else:
+                    print("incorrrect option")
+                print("\nQ3.Who among the following won the World Gymnastics Championships medal in Stuttgart, Germany?")
+                print("\nyour options are:")
+                print("1.Svetlana Khorkina")
+                print("2.Simon Biles")
+                print("3.Shallon Olsen")
+                print("4.Alexa Moreno")
+                c=int(input("enter your option"))
+                correct_opt = 2
+                if c==correct_opt:
+                    marks = marks + 50
+                    print("your points are: ",marks)
+                else:
+                    print("incorrrect option")
+                print("\nQ4.Which of these devices is recently launched by the Centre for fishermen to provide satellite-based information regarding disasters?")
+                print("\nyour options are:")
+                print("1.GEMINI")
+                print("2.PISCES")
+                print("3.GAGAN")
+                print("4.NONE OF THE ABOVE")
+                d=int(input("enter your option"))
+                correct_opt = 1
+                if d==correct_opt:
+                    marks = marks + 50
+                    print("your points are: ",marks)
+                else:
+                    print("incorrrect option")
+                print("\nQ5.Which of the neighbouring countries received over 10,000 vials of Antirabies vaccines from India?")
+                print("\nyour options are:")
+                print("1.Nepal")
+                print("2.Myanmar")
+                print("3.Bangladesh")
+                print("4.Afghanistan")
+                e=int(input("enter your option"))
+                correct_opt = 2
+                if e==correct_opt:
+                    marks = marks + 50
+                    print("your points are: ",marks)
+                else:
+                    print("incorrrect option")
+                print("Do you want to do another one??(yes/no)")
+                t = input()
+                if (t=='yes'):
+                    continue
+                else:
+                    print("okay , see you next time!")
+                    break
+            elif(choice == 3):
+                print("you have picked Places around the world!")
+                print("\nyou will be asked 5 questions and be given four options each so lets go!!")
+                print("\nQ1.Petra is located in which country?")
+                print("your options are:")
+                print("1.Jordan")
+                print("2.Iran")
+                print("3.Lebanon")
+                print("4.Iraq")
+                a=int(input("enter your option"))
+                correct_opt = 1
+                if a==correct_opt:
+                    marks = marks + 50
+                    print("your points are: ",marks)
+                else:
+                    print("incorrrect option")
+                print("\nQ2.The Colosseum is located in which country?")
+                print("\nyour options are:")
+                print("1.Italy")
+                print("2.France")
+                print("3.Norway")
+                print("4.Germany")
+                b=int(input("enter your option"))
+                correct_opt = 1
+                if b==correct_opt:
+                    marks = marks + 50
+                    print("your points are: ",marks)
+                else:
+                    print("incorrrect option")
+                print("\nQ3.Machu Picchu is located in which country?")
+                print("\nyour options are:")
+                print("1.Jamaica")
+                print("2.Cuba")
+                print("3.Peru")
+                print("4.Puerto Rico")
+                c=int(input("enter your option"))
+                correct_opt = 3
+                if c==correct_opt:
+                    marks = marks + 50
+                    print("your points are: ",marks)
+                else:
+                    print("incorrrect option")
+                print("\nQ4.Bali is located in which country?")
+                print("\nyour options are:")
+                print("1.India")
+                print("2.Phillipines")
+                print("3.Indonasia")
+                print("4.Romania")
+                d=int(input("enter your option"))
+                correct_opt = 3
+                if d==correct_opt:
+                    marks = marks + 50
+                    print("your points are: ",marks)
+                else:
+                    print("incorrrect option")
+                print("\nQ5.The Great Barrier Reef is located in which country?")
+                print("\nyour options are:")
+                print("1.Australia")
+                print("2.China")
+                print("3.Taiwan")
+                print("4.South Africa")
+                e=int(input("enter your option"))
+                correct_opt = 1
+                if e==correct_opt:
+                    marks = marks + 50
+                    print("your points are: ",marks)
+                else:
+                    print("incorrrect option")
+                print("Do you want to do another one??(yes/no)")
+                t = input()
+                if (t=='yes'):
+                    continue
+                else:
+                    print("okay , see you next time!")
+                    break
+            elif(choice == 4):
+                print("you have picked Sports!")
+                print("\nyou will be asked 5 questions and be given four options each so lets go!!")
+                print("\nQ1.When was the first Common Wealth Games held?")
+                print("\nyour options are:")
+                print("1.1930")
+                print("2.1934")
+                print("3.1938")
+                print("4.1948")
+                a=int(input("enter your option"))
+                correct_opt = 1
+                if a==correct_opt:
+                    marks = marks + 50
+                    print("your points are: ",marks)
+                else:
+                    print("incorrrect option")
+                print("\nQ2.In which sports is the participant called pugilist?")
+                print("\nyour options are:")
+                print("1.Sprinter")
+                print("2.Boxing")
+                print("3.Wrestiling")
+                print("4.Javellin throw")
+                b=int(input("enter your option"))
+                correct_opt = 2
+                if b==correct_opt:
+                    marks = marks + 50
+                    print("your points are: ",marks)
+                else:
+                    print("incorrrect option")
+                print("\nQ3.The term ‘Butterfly Stroke’ is referred to in which sport?")
+                print("\nyour options are:")
+                print("1.Tennis")
+                print("2.Badminton")
+                print("3.Swimming")
+                print("4.Volleyball")
+                c=int(input("enter your option"))
+                correct_opt = 3
+                if c==correct_opt:
+                    marks = marks + 50
+                    print("your points are: ",marks)
+                else:
+                    print("incorrrect option")
+                print("\nQ4.The term ‘Beamer’ is associated with")
+                print("\nyour options are:")
+                print("1.Chess")
+                print("2.Hockey")
+                print("3.Cricket")
+                print("4.Football")
+                d=int(input("enter your option"))
+                correct_opt = 3
+                if d==correct_opt:
+                    marks = marks + 50
+                    print("your points are: ",marks)
+                else:
+                    print("incorrrect option")
+                print("\nQ5.The number of players in each side in Water Polo is")
+                print("\nyour options are:")
+                print("1.6")
+                print("2.7")
+                print("3.8")
+                print("4.9")
+                e=int(input("enter your option"))
+                correct_opt = 2
+                if e==correct_opt:
+                    marks = marks + 50
+                    print("your points are: ",marks)
+                else:
+                    print("incorrrect option")
+                print("Do you want to do another one??(yes/no)")
+                t = input()
+                if (t=='yes'):
+                    continue
+                else:
+                    print("okay , see you next time!")
+                    break
+    print('\nDo you want to choose another game??(enter Y for yes or N for no)')
+    xyz=input()
+    if xyz=='Y':
+        continue
+    elif xyz=='N':
+        print('\nThe Arcade bids you adieu! Hope to see you soon')
+        break
+
