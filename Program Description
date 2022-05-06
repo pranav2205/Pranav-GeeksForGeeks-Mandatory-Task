@@ -1,0 +1,13 @@
+This application is developed to enable the users to play games that are fun and also tease the brain. These games test your general knowledge and your vocabulary.
+
+There are three modules in this application: 
+1.Hangman
+2.Crossword
+3.Quiz
+
+These games are quite user-friendly and require no knowledge of the coding language. But they definitely get your mind working!
+
+More information on the games:
+Hangman:The game gives a fixed number of chances to guess a word from the chosen topic. If user is  not able to do so the stick man will be hanged.
+Crossword: The user will have to complete a crossword based on the topic that is chosen and he/she  will be awarded 10 points per correct answer.
+Quiz: The  will have to answer 5 questions from any topic of choice and get 50 points per correct answer.
